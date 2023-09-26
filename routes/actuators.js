@@ -32,7 +32,7 @@ router.route('leds/led2').get(function (req, res, next) {
 router.route('/leds/led2/value').get(function (req, res, next) {
     res.send(resources.pi.actuators.leds.led2.value);
 });
-router.route('/leds/led2/value').get(function (req, res, next) {
+router.route('/leds/led2/name').get(function (req, res, next) {
     res.send(resources.pi.actuators.leds.led2.name);
 });
 
