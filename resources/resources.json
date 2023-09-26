@@ -1,0 +1,30 @@
+{
+    "pi": {
+        "name": "WoT Pi",
+        "description": "A WoT-connected Raspberry PI for security system.",
+        "port": 8080,
+        "actuators" : {
+            "description": "Two leds blinking to warn the intruision",
+            "leds": {
+               "led1": {
+                  "name" : "LED 1",
+                  "value": false
+                },
+
+               "led2": {
+                  "name": "LED 2",
+                  "value": false
+                }
+            }
+        },
+        "sensors": {
+            "pirs": {
+                "pir1": {
+                    "name": "Passive Infrared",
+                    "description": "A passive infrared sensor. When 'true' someone is present.",
+                    "value": true
+                }
+            }
+        }
+        }
+}
