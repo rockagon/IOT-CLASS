@@ -1,7 +1,7 @@
 var express = require('express'),
 
 actuatorsRoutes = require('../routes/actuators'),
-sensorRoutes = require('../routes/sensor'),
+sensorRoutes = require('../routes/sensors'),
 piRoutes = require('../routes/pi'),
 cors = require('cors');
 

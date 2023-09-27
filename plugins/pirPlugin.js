@@ -15,7 +15,7 @@ pir.watch(function (err, value) {
 	   interval1 = setInterval(ledsPlugin.warning , 1000)
 	   console.log("PIR value is: " , value)
 	}
-	setTimeout(alert_Off, 30000)
+	setTimeout(alert_Off, 10000000) //To stop the warning after 30s
 	}
    )
    function alert_Off() { 
@@ -27,6 +27,6 @@ pir.watch(function (err, value) {
 	console.log('No warning')
 	resources.pi.actuators.leds.led2 = false
     resources.pi.actuators.leds.led1 = false
-	//process.exit(); 
+	process.exit(); 
    }
    
