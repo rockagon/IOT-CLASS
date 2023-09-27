@@ -14,6 +14,7 @@ pir.watch(function (err, value) {
 	   if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
 	   interval1 = setInterval(ledsPlugin.warning , 1000)
 	   console.log("PIR value is: " , value)
+	   resources.pi.sensors.pirs.pir1.value = true
 	}
 	setTimeout(alert_Off, 10000000) //To stop the warning after 30s
 	}
@@ -25,8 +26,8 @@ pir.watch(function (err, value) {
 	led1.unexport()
 	led2.unexport()
 	console.log('No warning')
-	resources.pi.actuators.leds.led2 = false
-    resources.pi.actuators.leds.led1 = false
+	resources.pi.actuators.leds.led2.value = false
+    resources.pi.actuators.leds.led1.value = false
 	process.exit(); 
    }
    

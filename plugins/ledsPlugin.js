@@ -7,15 +7,15 @@ var Gpio = onoff.Gpio,
 
 function warning() {                             //The warning function
 	if (led1.readSync() === 0) { 
-        resources.pi.actuators.leds.led1 = true 
-        resources.pi.actuators.leds.led2 = false
+        resources.pi.actuators.leds.led1.value = true 
+        resources.pi.actuators.leds.led2.value = false
 		led1.writeSync(1);
 		led2.writeSync(0);
 		console.log ('Alert Intruision, LED1 on');
 	}
     else {
-        resources.pi.actuators.leds.led2 = true
-        resources.pi.actuators.leds.led1 = false
+        resources.pi.actuators.leds.led2.value = true
+        resources.pi.actuators.leds.led1.value = false
 		led1.writeSync(0);
 		led2.writeSync(1);
 		console.log ('Alert Intruision LED 2 on');

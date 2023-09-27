@@ -1,7 +1,7 @@
 var express = require('express'),
 
 actuatorsRoutes = require('../routes/actuators'),
-sensorRoutes = require('../routes/sensors'),
+sensorsRoutes = require('../routes/sensors'),
 piRoutes = require('../routes/pi'),
 cors = require('cors');
 
@@ -11,6 +11,6 @@ app.use(cors());
 
 app.use('/', piRoutes);
 app.use('/pi/actuators', actuatorsRoutes);
-app.use('/pi/sensor', sensorRoutes);
+app.use('/pi/sensors', sensorsRoutes);
 
 module.exports = app;
