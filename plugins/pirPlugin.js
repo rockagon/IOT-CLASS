@@ -1,9 +1,10 @@
 var onoff = require ( 'onoff');
+var Gpio = onoff.Gpio
+led1 = new Gpio(20, 'out')
+led2 = new Gpio(21, 'out')
+pir = new Gpio(17, 'in', 'both');
 var ledsPlugin = require("./ledsPlugin");
 var resources = require('./../resources/resources.json');
-
-var Gpio = onoff.Gpio, 
-    pir = new Gpio(17, 'in', 'both');
 var interval1 = null;
 
 
