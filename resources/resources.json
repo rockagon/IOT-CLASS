@@ -2,7 +2,6 @@
     "pi": {
         "name": "WoT Pi",
         "description": "A WoT-connected Raspberry PI for security system.",
-        "port": 8080,
         "actuators" : {
             "description": "Two leds blinking to warn the intruision",
             "leds": {

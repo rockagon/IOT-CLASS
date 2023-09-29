@@ -11,6 +11,7 @@ pir.watch(function (err, value) {
 	else if (value) {
 	   if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
 	   interval1 = setInterval(ledsPlugin.warming(), 1000);	
+	   resources.pi.sensors.pirs.pir1.value = true
 	}
 	setTimeout(alert_Off , 30000) // To turn the alert off after 30s
    }
