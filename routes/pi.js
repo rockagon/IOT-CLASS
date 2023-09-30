@@ -15,7 +15,4 @@ router.route('/pi/name').get(function (req, res, next) {
 router.route('/pi/description').get(function (req, res, next) {
     res.send(resources.pi.description);
 })
-router.route('/pi/port').get(function (req, res, next) {
-    res.send(resources.pi.port);
-})
 module.exports = router;

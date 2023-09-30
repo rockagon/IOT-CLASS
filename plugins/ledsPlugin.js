@@ -6,7 +6,7 @@ var Gpio = onoff.Gpio,
 	led2 = new Gpio(21, 'out')
 var interval1 = null;
 
-function warming() {
+function warning() {
 	if (led1.readSync() === 0) { 
         resources.pi.actuators.leds.led1 = true 
         resources.pi.actuators.leds.led2 = false
@@ -30,11 +30,11 @@ function alert_Off() {
 	led1.unexport(); 
 	led2.writeSync(0); 
 	led2.unexport();
-	console.log('End warming')
+	console.log('End warning')
 	process.exit(); 
 }
 process.on('SIGINT', alert_Off); //To turn the alert off by pressing Ctrl+C
 
 exports.module = {
-    warming, alert_Off
+    warning, alert_Off
 }
