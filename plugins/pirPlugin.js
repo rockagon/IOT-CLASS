@@ -5,7 +5,6 @@ var Gpio = onoff.Gpio,
 var interval1 = null;
 
 
-
 pir.watch(function (err, value) {
 	if (err) { exit(err);}  //In case of error of PIR
 	else if (value) {
@@ -16,4 +15,16 @@ pir.watch(function (err, value) {
 	setTimeout(alert_Off , 30000) // To turn the alert off after 30s
    }
    )
-process.on('SIGINT', ledsPlugin.alert_Off()); //To turn the alert off by pressing Ctrl+C
+   
+function alert_Off() { 
+    resources.pi.actuators.leds.led2 = false
+    resources.pi.actuators.leds.led1 = false
+	clearInterval(interval1);
+	led1.writeSync(0); 
+	led1.unexport(); 
+	led2.writeSync(0); 
+	led2.unexport();
+	console.log('End warning')
+	process.exit(); 
+}
+process.on('SIGINT', alert_Off()); //To turn the alert off by pressing Ctrl+C

@@ -22,19 +22,8 @@ function warning() {
 		console.log ( 'Alert Intruision');
 	}
 }
-function alert_Off() { 
-    resources.pi.actuators.leds.led2 = false
-    resources.pi.actuators.leds.led1 = false
-	clearInterval(interval1);
-	led1.writeSync(0); 
-	led1.unexport(); 
-	led2.writeSync(0); 
-	led2.unexport();
-	console.log('End warning')
-	process.exit(); 
-}
 process.on('SIGINT', alert_Off); //To turn the alert off by pressing Ctrl+C
 
 exports.module = {
-    warning, alert_Off
+    warning
 }

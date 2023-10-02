@@ -6,12 +6,12 @@
             "description": "Two leds blinking to warn the intruision",
             "leds": {
                "led1": {
-                  "name" : "LED 1",
+                  "name" : "led1",
                   "value": false
                 },
 
                "led2": {
-                  "name": "LED 2",
+                  "name": "led2",
                   "value": false
                 }
             }
