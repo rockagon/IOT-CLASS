@@ -1,8 +1,8 @@
 var onoff = require ( 'onoff');
 var resources = require('./../resources/resources.json');
 
-var Gpio = onoff.Gpio, 
-	led1 = new Gpio(20, 'out')
+var Gpio = onoff.Gpio;
+var	led1 = new Gpio(20, 'out');
 
 function warning() {
 	if (led1.readSync() === 0) { 
@@ -18,5 +18,6 @@ function warning() {
 		console.log ( 'Alert Intrusion, LED 2 on');
 	}
 }
+
 
 module.exports = {warning}
