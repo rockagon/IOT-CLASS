@@ -2,7 +2,7 @@ var Gpio = require('onoff').Gpio;
 // var Gpio = onoff
 
 var led1 = new Gpio(532, 'out')
-var pir = new Gpio(17, 'in', 'both');
+var pir = new Gpio(529, 'in', 'both');
 //var resources = require('./../resources/resources.json');
 var interval1 = null;
 
