@@ -15,4 +15,4 @@ ldr.watch(function (err, value) {
        console.log ('Security lights off');
    }
 })
-console.log('Rock')
+//console.log('Rock')
