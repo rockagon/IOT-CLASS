@@ -32,14 +32,18 @@ function alert_Off() {
 }
 
 pir.watch(function (err, value) {
-	if (err) { exit(err);}  //In case of error of PIR
+	if (err) { 
+		console.log('Error');
+		exit(err);}  //In case of error of PIR
 	else if (value) {
+		console.log("PIR value is: " , value)
 	   if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
 	   interval1 = setInterval(warning(), 1000);	
 	   console.log("PIR value is: " , value)
 	   resources.pi.sensors.pirs.pir1.value = true
 	}
 	else if (!value) {
+		console.log("PIR value is: " , value)
 		if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
 		//interval1 = setInterval(warning(), 1000);	
 		console.log("PIR value is no value ")
@@ -49,4 +53,4 @@ pir.watch(function (err, value) {
    }
    )
 
-console.log("Rock")
+//console.log("Rock")
