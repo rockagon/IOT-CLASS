@@ -39,7 +39,7 @@ pir.watch(function (err, value) {
 		warning()
 	}, 1000);  
 	   console.log("PIR value is: " , value)
-	   resources.pi.sensors.pir.value = true
+	   //resources.pi.sensors.pir.value = true
 	}
 	setTimeout(alert_Off , 30000) // To turn the alert off after 30s
    }
