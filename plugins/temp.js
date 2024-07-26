@@ -2,7 +2,7 @@ const sensor = require('node-dht-sensor');
 
 // Initialize the sensor (DHT22, GPIO pin)
 const sensorType = 22;
-const gpioPin = 17; // Use a valid GPIO pin number
+const gpioPin = 16; // GPIO16
 var temperature = 0;
 var humidity = 0;
 
@@ -27,4 +27,8 @@ if (sensor.initialize(sensorType, gpioPin)) {
     console.error('Failed to initialize sensor');
 }
 
-console.log('Rock');
+// Export the LDR value
+module.exports = {
+	getTempValue: () => temperature ,
+    getHumdValue: () => humidity
+};

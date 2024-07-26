@@ -1,19 +1,50 @@
-var Gpio = require('onoff').Gpio; 
-	light1 = new Gpio(532, 'out'),
-    ldr = new Gpio(529, 'in', 'both');
+var Gpio = require('onoff').Gpio;
 
-ldr.watch(function (err, value) {
-    if (err) {
-        console.log ('Error');
-        exit(err); 
-       }  //In case of error of LDR
-    else if (value===1) { //darkness fall
-       light1.writeSync(1);
-       console.log ('Security lights on');
-       }
-    else if (value===0) { //sunlight raise
-       light1.writeSync(0);
-       console.log ('Security lights off');
-   }
-})
-//console.log('Rock')
+    var led2 = new Gpio(533, 'out'); // GPIO21
+    var ldr = new Gpio(539, 'in', 'both'); // GPIO27
+    var interval2 = null;
+    var ldrValue = 0;
+    
+    // Function to check LDR sensor value
+    function checkLDR() {
+      ldr.read((err, value) => {
+        if (err) {
+          console.log('Error reading LDR sensor:', err);
+          return;
+        }
+        console.log("LDR value is: ", value);
+        ldrValue = value; // Store the value in ldrValue
+        if (value) { // Assuming high value indicates darkness
+          if (interval2) {
+            clearInterval(interval2);
+          }
+          led2.writeSync(1);
+          // Start blinking LED every 2 seconds
+          interval2 = setInterval(() => {
+            led2.writeSync(led2.readSync() ^ 1); // Toggle LED state
+          }, 2000);
+        } else {
+          // If light is detected, turn off the LED
+          if (interval2) {
+            clearInterval(interval2);
+          }
+          led2.writeSync(0);
+        }
+      });
+    }
+    
+    // Set an interval to check the LDR sensor every 2 seconds
+    setInterval(checkLDR, 2000);
+    
+    // Handle process exit
+    process.on('SIGINT', () => {
+        clearInterval(interval2);
+        led2.writeSync(0);
+        led2.unexport();
+        ldr.unexport();
+        process.exit();
+      });
+    // Export the LDR value
+    module.exports = {
+         getLdrValue: () => ldrValue
+    };
