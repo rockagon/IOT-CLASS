@@ -1,7 +1,7 @@
 const sensor = require('node-dht-sensor');
 
 // Initialize the sensor (DHT22, GPIO pin)
-sensor.initialize(22, 4);
+sensor.initialize(22, 529);
 
 // Function to read the sensor data
 function readSensorData() {
