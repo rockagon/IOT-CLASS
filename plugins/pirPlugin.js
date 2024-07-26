@@ -1,7 +1,7 @@
 var Gpio = require('onoff').Gpio;
 
-var led1 = new Gpio(532, 'out')
-var pir = new Gpio(529, 'in', 'both');
+//var led1 = new Gpio(532, 'out')
+var pir = new Gpio(17, 'in', 'both');
 //var resources = require('./../resources/resources.json');
 var interval1 = null;
 
@@ -10,7 +10,6 @@ function alert_Off() {
 	  clearInterval(interval1);
 	  led1.writeSync(0); 
 	  led1.unexport(); 
-	  console.log('End warning')
 	  process.exit(); 
     }
 
