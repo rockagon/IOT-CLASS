@@ -1,7 +1,6 @@
-var onoff = require ('onoff');
-var Gpio = onoff.Gpio, 
-	light1 = new Gpio(21, 'out'),
-    ldr = new Gpio(16, 'in', 'both');
+var Gpio = require('onoff').Gpio; 
+	light1 = new Gpio(533, 'out'),
+    ldr = new Gpio(528, 'in', 'both');
 
 ldr.watch(function (err, value) {
     if (err) {exit(err);}  //In case of error of LDR
@@ -14,3 +13,4 @@ ldr.watch(function (err, value) {
        console.log ('Security lights off');
    }
 })
+console.log('Rock')
