@@ -6,34 +6,28 @@ resources = require('../resources/resources.json');
 router.route('/').get(function (req, res, next) {
     res.send(resources.pi.actuators);
 });
-router.route('/description').get(function (req, res, next) {
-    res.send(resources.pi.actuators.description);
+router.route('/ledpir').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledpir);
 });
 
-router.route('/leds').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds);
+router.route('/ledpir.name').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledpir.name);
 });
 
-router.route('/leds/led1').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led1);
-    });
-
-router.route('/leds/led1/value').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led1.value);
-});
-router.route('/leds/led1/name').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led1.name);
+router.route('/ledpir.value').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledpir.value);
 });
 
-router.route('/leds/led2').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led2);
+router.route('/ledldr').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledldr);
 });
 
-router.route('/leds/led2/value').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led2.value);
+router.route('/ledldr.name').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledldr.name);
 });
-router.route('/leds/led2/name').get(function (req, res, next) {
-    res.send(resources.pi.actuators.leds.led2.name);
+
+router.route('/ledldr.value').get(function (req, res, next) {
+    res.send(resources.pi.actuators.ledldr.value);
 });
 
 
