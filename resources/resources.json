@@ -1,37 +1,45 @@
 {
     "pi": {
-        "name": "WoT Pi",
-        "description": "A WoT-connected Raspberry PI for security system.",
-        "actuators" : {
-            "description": "Two leds blinking to warn the intruision",
-            "leds": {
-               "led1": {
-                  "name" : "led1",
-                  "value": false
-                },
-
-               "led2": {
-                  "name": "led2",
-                  "value": false
-                }
-            }
-        },
-        "sensors": {
-            "pir": {
-                    "name": "Passive Infrared",
+        "name": "WoT Pi IoT CMU-Africa",
+        "description": "Hello! Welcome to the Web of Things gateway example from the IoT class CMU-Africa.",
+        "My WoT Raspberry Pi" : {
+            "Description" : "A simple WoT-connected Raspberry Pi for the IoT class",
+            "The list of sensors": {
+                "pir": {
+                    "name": "Motion detection",
                     "description": "A passive infrared sensor.",
                     "value": true
                 },
-            "ldr": {
-                    "name": "LDR",
+                "ldr": {
+                    "name": "Light detection",
                     "description": "A light detection sensor.",
                     "value": true
                 },
-            "dht": {
-                    "name": "DHT22",
-                    "description": "A temperature and humidity sensor.",
-                    "value": true
-                }
-            }
+                "dht22": {
+                    "temperature" : {
+                        "name": "Temperature",
+                        "description": "Temperature in the lab",
+                        "value": true
+                    },
+                    "humidity": {
+                        "name": "Humidity",
+                        "description": "Humidity in the lab",
+                        "value": true
+                    },
+                },
+          "The list of actuactors" : {
+              "ledpir": {
+                  "name" : "Motion detection light",
+                  "value": false
+              }, 
+              "ledldr": {
+                  "name": "Night detection light",
+                  "value": false
+              }
+          }
+        },
+        "My WoT Camera" : {
+            "description" : "A WoT-connected camera installed in the CMU-Africa IoT lab",
+            "value": true
         }
-    }
+}
