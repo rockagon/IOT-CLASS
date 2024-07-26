@@ -28,6 +28,12 @@
                         "value": true
                     },
                 },
+                "camera" : {
+                    "name" : " Camera",
+                    "description" : "A WoT-connected camera installed in the CMU-Africa IoT lab", 
+                    "stream": "tcp/h264://172.29.111.244:8001" 
+                },
+                
           "The list of actuactors" : {
               "ledpir": {
                   "name" : "Motion detection light",
@@ -39,9 +45,5 @@
               }
           }
         },
-        "My WoT Camera" : {
-            "name" : " Camera",
-            "description" : "A WoT-connected camera installed in the CMU-Africa IoT lab",
-            "stream": "tcp/h264://172.29.111.244:8001"
-        }
+        
 }
