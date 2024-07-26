@@ -29,6 +29,6 @@ pir.watch(function (err, value) {
 	}
    )
 
-   alert_Off()
+   //alert_Off()
 
 //console.log("Rock")
