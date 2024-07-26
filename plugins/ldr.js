@@ -5,7 +5,8 @@ var Gpio = require('onoff').Gpio;
 ldr.watch(function (err, value) {
     if (err) {
         console.log ('Error');
-        exit(err);}  //In case of error of LDR
+        exit(err); 
+       }  //In case of error of LDR
     else if (value===1) { //darkness fall
        light1.writeSync(1);
        console.log ('Security lights on');
