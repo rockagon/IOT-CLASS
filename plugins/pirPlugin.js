@@ -24,7 +24,7 @@ pir.watch(function (err, value) {
 	   if (interval1) {clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
 	   setInterval(() => {
 		led1.writeSync(1);
-	}, 2000);  
+	}, 500);  
 	}
 	}
    )
