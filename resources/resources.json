@@ -3,7 +3,8 @@
         "name": "WoT Pi IoT CMU-Africa",
         "description": "Hello! Welcome to the Web of Things gateway example from the IoT class CMU-Africa.",
         "My WoT Raspberry Pi" : {
-            "Description" : "A simple WoT-connected Raspberry Pi for the IoT class",
+            "name" : "My WoT Raspberry Pi",
+            "description" : "A simple WoT-connected Raspberry Pi for the IoT class",
             "The list of sensors": {
                 "pir": {
                     "name": "Motion detection",
