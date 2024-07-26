@@ -17,5 +17,4 @@ function readSensorData() {
 // Start reading the sensor data
 readSensorData();
 
-
 console.log('Rock');
