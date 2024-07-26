@@ -2,7 +2,7 @@ const sensor = require('node-dht-sensor');
 
 // Initialize the sensor (DHT22, GPIO pin)
 const sensorType = 22;
-const gpioPin = 4; // Use a valid GPIO pin number
+const gpioPin = 529; // Use a valid GPIO pin number
 
 if (sensor.initialize(sensorType, gpioPin)) {
     console.log('Sensor initialized successfully');
