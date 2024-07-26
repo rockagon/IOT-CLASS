@@ -34,18 +34,13 @@ pir.watch(function (err, value) {
 		exit(err);}  //In case of error of PIR
 	else if (value) {
 		console.log("PIR value is: " , value)
-	   if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
-	   interval1 = setInterval(warning(), 1000);	
+	   if (interval1) {clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
+	   setInterval(() => {
+		warning()
+	}, 1000);  
 	   console.log("PIR value is: " , value)
 	   resources.pi.sensors.pir.value = true
 	}
-	else if (!value) {
-		console.log("PIR value is: " , value)
-		if (interval1) { clearInterval(interval1);} //To clear interval1 each time to keep blinking interval same
-		//interval1 = setInterval(warning(), 1000);	
-		console.log("PIR value is no value ")
-		resources.pi.sensors.pir.value = true
-	 }
 	setTimeout(alert_Off , 30000) // To turn the alert off after 30s
    }
    )

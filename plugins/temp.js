@@ -2,7 +2,9 @@ const sensor = require('node-dht-sensor');
 
 // Initialize the sensor (DHT22, GPIO pin)
 const sensorType = 22;
-const gpioPin = 529; // Use a valid GPIO pin number
+const gpioPin = 17; // Use a valid GPIO pin number
+var temperature = 0;
+var humidity = 0;
 
 if (sensor.initialize(sensorType, gpioPin)) {
     console.log('Sensor initialized successfully');
@@ -10,9 +12,10 @@ if (sensor.initialize(sensorType, gpioPin)) {
     // Function to read the sensor data
     function readSensorData() {
         const readout = sensor.read();
-
-        console.log(`Temperature: ${readout.temperature.toFixed(2)} °C`);
-        console.log(`Humidity: ${readout.humidity.toFixed(2)} %`);
+        temperature = readout.temperature.toFixed(2);
+        humidity = readout.humidity.toFixed(2);
+        console.log(`Temperature: ${temperature} °C`);
+        console.log(`Humidity: ${humidity} %`);
 
         // Read data every 2 seconds
         setTimeout(readSensorData, 2000);
