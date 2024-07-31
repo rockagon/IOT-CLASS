@@ -1,5 +1,5 @@
 const sensor = require('node-dht-sensor');
-
+var resources = require('./../resources/resources.json');
 // Initialize the sensor (DHT22, GPIO pin)
 const sensorType = 22;
 const gpioPin = 16; // GPIO16
@@ -16,7 +16,8 @@ if (sensor.initialize(sensorType, gpioPin)) {
         humidity = readout.humidity.toFixed(2);
         console.log(`Temperature: ${temperature} °C`);
         console.log(`Humidity: ${humidity} %`);
-
+        resources.pi.sensors.dht22.temperature.value = temperature
+        resources.pi.sensors.dht22.humidity.value = humidity
         // Read data every 2 seconds
         setTimeout(readSensorData, 2000);
     }

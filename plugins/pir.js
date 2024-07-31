@@ -4,6 +4,7 @@ var led1 = new Gpio(532, 'out'); //GPIO20
 var pir = new Gpio(529, 'in', 'both'); //GPIO17
 var interval1 = null;
 var pirValue = 0;
+var resources = require('./../resources/resources.json');
 
 // Function to check PIR sensor value
 function checkPIR() {
@@ -18,17 +19,19 @@ function checkPIR() {
       if (interval1) {
         clearInterval(interval1);
       }
-      led1.writeSync(1);
+
       // Start blinking LED every 2 seconds
       interval1 = setInterval(() => {
         led1.writeSync(led1.readSync() ^ 1); // Toggle LED state
       }, 2000);
+      resources.pi.sensors.pir.value = true
     } else {
       // If no motion is detected, turn off the LED
       if (interval1) {
         clearInterval(interval1);
       }
       led1.writeSync(0);
+      resources.pi.sensors.pir.value = false
     }
   });
 }

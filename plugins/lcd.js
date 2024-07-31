@@ -45,7 +45,7 @@ lcd.on('ready', () => {
     const ldrValue = ldr.getLdrValue();
 
     // Format the lines for the LCD
-    const line1 = `Temp:${temperature}C Hum:${humidity}%`;
+    const line1 = `T:${temperature}C H:${humidity}%`;
     const line2 = `PIR:${pirValue} LDR:${ldrValue}`;
     
     // Write to the LCD

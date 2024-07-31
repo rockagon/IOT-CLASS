@@ -24,15 +24,10 @@
                     "description": "Humidity in the lab",
                     "value": true
                 }
-            },
-            "camera" : {
-                "name" : " Camera",
-                "description" : "A WoT-connected camera installed in the CMU-Africa IoT lab", 
-                "stream": "tcp/h264://172.29.111.244:8001" 
             }
         },
                 
-        "actuactors" : {
+        "actuators" : {
             "ledpir": {
                 "name" : "Motion detection light",
                 "value": false
