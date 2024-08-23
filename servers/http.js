@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var cors = require('cors');
@@ -32,8 +33,8 @@ app.use('/pi', piRoutes);
 app.use('/pi/actuators', actuatorsRoutes);
 app.use('/pi/sensors', sensorsRoutes);
 
-app.listen(8888, function () {
-    console.log('Server is running on port 8888');
+app.listen(8000, function () {
+    console.log('Server is running on port 8000');
 });
 
 module.exports = app;
