@@ -1,3 +1,4 @@
+
 var Gpio = require('onoff').Gpio;
 
     var led2 = new Gpio(533, 'out'); // GPIO21
@@ -24,6 +25,7 @@ var Gpio = require('onoff').Gpio;
             led2.writeSync(led2.readSync() ^ 1); // Toggle LED state
           }, 2000);
           resources.pi.sensors.ldr.value = true
+          resources.pi.actuators.ledldr.value = true
         } else {
           // If light is detected, turn off the LED
           if (interval2) {
@@ -31,6 +33,7 @@ var Gpio = require('onoff').Gpio;
           }
           led2.writeSync(0);
           resources.pi.sensors.ldr.value = false
+          resources.pi.actuators.ledldr.value = false
         }
       });
     }

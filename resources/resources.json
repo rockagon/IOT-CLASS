@@ -1,28 +1,30 @@
 {
     "pi": {
-        "name": "WoT Pi IoT CMU-Africa",
-        "description": "Hello! Welcome to the Web of Things gateway example from the IoT class CMU-Africa.",
+        "name": "WoT Simple Smart Home",
+        "description": "Hello! Welcome to the Smart Home dashbord for the IoT class CMU-Africa.",
         "sensors": {
             "pir": {
                 "name": "Motion detection",
                 "description": "A passive infrared sensor.",
-                "value": true
+                "value": false
             },
             "ldr": {
                 "name": "Light detection",
                 "description": "A light detection sensor.",
-                "value": true
+                "value": false
             },
             "dht22": {
+                "name": "Temperature and Humidity Reading",
+                "description": "Temperature and humidity in the lab",
                 "temperature" : {
                     "name": "Temperature",
                     "description": "Temperature in the lab",
-                    "value": true
+                    "value": false
                 },
                 "humidity": {
                     "name": "Humidity",
                     "description": "Humidity in the lab",
-                    "value": true
+                    "value": false
                 }
             }
         },
@@ -30,10 +32,12 @@
         "actuators" : {
             "ledpir": {
                 "name" : "Motion detection light",
+                "description": "A light that turns on if motion detected",
                 "value": false
             }, 
             "ledldr": {
                 "name": "Night detection light",
+                "description": "A light that turns on if darkness detected",
                 "value": false
             }
         }

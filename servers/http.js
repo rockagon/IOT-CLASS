@@ -22,22 +22,15 @@ app.get('/', (req, res) => {
     `);
 });
 
+// HATAOS 
+app.get('/', (req, res) => {
+    res.json(resources);
+});
+
 // API Routes
 app.use('/pi', piRoutes);
 app.use('/pi/actuators', actuatorsRoutes);
 app.use('/pi/sensors', sensorsRoutes);
-
-// HATAOS Example Route (if needed)
-app.get('/api', (req, res) => {
-    res.json({
-        _links: {
-            'self': { 'href': '/api' },
-            'pi': { 'href': '/pi' },
-            'actuators': { 'href': '/pi/actuators' },
-            'sensors': { 'href': '/pi/sensors' }
-        }
-    });
-});
 
 app.listen(8888, function () {
     console.log('Server is running on port 8888');

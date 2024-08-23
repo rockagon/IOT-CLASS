@@ -25,6 +25,7 @@ function checkPIR() {
         led1.writeSync(led1.readSync() ^ 1); // Toggle LED state
       }, 2000);
       resources.pi.sensors.pir.value = true
+      resources.pi.actuators.ledpir.value = true
     } else {
       // If no motion is detected, turn off the LED
       if (interval1) {
@@ -32,6 +33,7 @@ function checkPIR() {
       }
       led1.writeSync(0);
       resources.pi.sensors.pir.value = false
+      resources.pi.actuators.ledpir.value = false
     }
   });
 }

@@ -1,3 +1,4 @@
+
 const Lcd = require('lcd');
 const Gpio = require('onoff').Gpio; // Include the onoff to interact with the GPIO
 const ldr = require('./ldr');
