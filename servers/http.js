@@ -1,4 +1,3 @@
-
 var express = require('express');
 var path = require('path');
 var cors = require('cors');
@@ -21,11 +20,6 @@ app.get('/', (req, res) => {
         <h1>WELCOME TO THE CMU AFRICA IOT CLASS PROJECTS PORTAL</h1>
         <p><a href="/pi">Raspberry Pi based simple smart home</a></p>
     `);
-});
-
-// HATAOS 
-app.get('/', (req, res) => {
-    res.json(resources);
 });
 
 // API Routes

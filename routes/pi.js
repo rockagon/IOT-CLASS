@@ -18,10 +18,11 @@ router.route('/').get(function (req, res, next) {
             </body>
             </html>
         `);
-    } else {
-        res.json(resources.pi);
-    }
-});
+       } 
+//       else {
+//         res.json(resources.pi);
+//     }
+   });
 
 router.route('/sensors').get(function (req, res, next) {
     const accept = req.headers.accept || 'application/json';
