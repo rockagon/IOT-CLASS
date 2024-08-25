@@ -45,6 +45,7 @@ router.route('/sensors').get(function (req, res, next) {
         res.json(resources.pi.sensors);
     }
 });
+ 
 
 router.route('/sensors/pir').get(function (req, res, next) {
     const accept = req.headers.accept || 'application/json';
