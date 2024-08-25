@@ -6,46 +6,59 @@
     <title>Web of Things Dashboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px; /* Margin around the page */
-            font-size: 22px; /* Font size for the body text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 50px;
+            font-size: 20px;
+            line-height: 1.6;
         }
         h1 {
-            color: #333;
-            font-size: 2em; /* Font size for <h1> */
-            margin-bottom: 10px; /* Margin below <h1> */
+            color: #222;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            text-align: center;
         }
         h2 {
-            color: #555;
-            font-size: 2.5em; /* Font size for <h2> */
-            margin-top: 20px; /* Margin above <h2> */
-            margin-bottom: 10px; /* Margin below <h2> */
+            color: #444;
+            font-size: 3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
         }
         p {
-            font-size: 3em; /* Font size for <p> */
-            line-height: 1.6; /* Line height for better readability */
-            margin-bottom: 15px; /* Margin below <p> */
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
-            margin-bottom: 10px; /* Margin below each <li> item */
+            margin-bottom: 15px;
+            font-size: 20px;
         }
         a {
             color: #007bff;
-            font-size: 30px; /* Font size for <p> */
             text-decoration: none;
+            font-size: 3em;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: #e7f3ff;
+            transition: background-color 0.3s, color 0.3s;
         }
         a:hover {
-            text-decoration: underline;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <h1>Web of Things Dashboard</h1>
-    <p>Welcome to the Web of Things dashboard. Here you can access various sensors and actuators.</p>
+    <p>Welcome to the Web of Things dashboard. Access various sensors and actuators below.</p>
     <h2>Sensors</h2>
     <ul>
         <li><a href="/pi/sensors/pir">PIR Sensor</a></li>

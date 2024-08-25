@@ -17,18 +17,22 @@ const lcd = new Lcd({
 // Function to write to the LCD
 function writeToLcd(lines, callback) {
   lcd.clear(err => {
+    
     if (err) {
       throw err;
+      console.log('LCD Error');
     }
     lcd.setCursor(0, 0);
     lcd.print(lines[0], err => {
       if (err) {
         throw err;
+        console.log('LCD Error');
       }
       lcd.setCursor(0, 1);
       lcd.print(lines[1], err => {
         if (err) {
           throw err;
+          console.log('LCD Error');
         }
         callback();
       });
@@ -53,7 +57,7 @@ lcd.on('ready', () => {
     writeToLcd([line1, line2], () => {
       console.log('Sensor values displayed on LCD');
     });
-  }, 2000);
+  }, 1000);
 });
 
 // When exiting, clear the LCD

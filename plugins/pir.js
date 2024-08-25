@@ -15,31 +15,25 @@ function checkPIR() {
     }
     console.log("PIR value is: ", value);
 	pirValue = value; // Store the value in pirValue
-    if (value) {
+    if (value==1) {
       if (interval1) {
         clearInterval(interval1);
       }
 
-      // Start blinking LED every 2 seconds
-      interval1 = setInterval(() => {
-        led1.writeSync(led1.readSync() ^ 1); // Toggle LED state
-      }, 2000);
+      if (led1.readSync() === 0) { 
+        led1.writeSync(1); // Toggle LED state
       resources.pi.sensors.pir.value = true
       resources.pi.actuators.ledpir.value = true
-    } else {
+    } else if (led1.readSync() === 1){
       // If no motion is detected, turn off the LED
-      if (interval1) {
-        clearInterval(interval1);
-      }
       led1.writeSync(0);
       resources.pi.sensors.pir.value = false
       resources.pi.actuators.ledpir.value = false
     }
-  });
-}
+  }})};
 
 // Set an interval to check the PIR sensor every 2 seconds
-setInterval(checkPIR, 2000);
+setInterval(checkPIR, 1000);
 
 // Handle process exit
 process.on('SIGINT', () => {

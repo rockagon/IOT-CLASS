@@ -21,9 +21,7 @@ var Gpio = require('onoff').Gpio;
             clearInterval(interval2);
           }
           // Start blinking LED every 2 seconds
-          interval2 = setInterval(() => {
-            led2.writeSync(led2.readSync() ^ 1); // Toggle LED state
-          }, 2000);
+          led2.writeSync(1); // Toggle LED state
           resources.pi.sensors.ldr.value = true
           resources.pi.actuators.ledldr.value = true
         } else {
