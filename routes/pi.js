@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var resources = require('../resources/resources.json');
 var QualityFactors = require('../QualityFactors');
-
+const { startCameraStream } = require('../plugins/camera');
 router.route('/')
     .get(function (req, res, next) {
         const accept = req.headers.accept || 'application/json';
@@ -338,77 +338,80 @@ router.route('/sensors/dht22')
   });
 
 // Route for the camera stream
-router.route('/sensors/camera')
-  .get(function (req, res, next) {
-      const accept = req.headers.accept || 'application/json';
-      const qualityFactors = QualityFactors.parseQualityFactors(accept);
-      const camera = resources.pi.sensors.camera;
+// router.route('/sensors/camera')
+//   .get(function (req, res, next) {
+//       const accept = req.headers.accept || 'application/json';
+//       const qualityFactors = QualityFactors.parseQualityFactors(accept);
+//       const camera = resources.pi.sensors.camera;
 
-      if (qualityFactors['text/html'] > qualityFactors['application/json']) {
-        res.send(`
-            <html>
-            <body>
-                <h1>DHT22 Sensor</h1>
-                <p>Name: ${camera.name}</p>
-                <p>Description: ${camera.description}</p>
-                <p>Stream: ${camera.url}</p>
-                <a href="/pi/sensors">Back to Sensors</a>
-            </body>
-            </html>
-        `);
-      } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
-        res.json(camera);
-      } else if (accept.includes('text/html') && !accept.includes('application/json')) {
-        res.send(`
-            <html>
-            <body>
-                <h1>Monitoring Camera</h1>
-                <p>Name: ${camera.name}</p>
-                <p>Description: ${camera.description}</p>
-                <p>Stream: ${camera.url}</p>
-                <a href="/pi/sensors">Back to Sensors</a>
-            </body>
-            </html>
-        `);
-      } else if (!accept.includes('text/html') && accept.includes('application/json')) {
-        res.json(camera);
-      }
-  })
-  .head(function (req, res, next) {
-      const accept = req.headers.accept || 'application/json';
-      const qualityFactors = QualityFactors.parseQualityFactors(accept);
+//       if (qualityFactors['text/html'] > qualityFactors['application/json']) {
+//         res.send(`
+//             <html>
+//             <body>
+//                 <h1>DHT22 Sensor</h1>
+//                 <p>Name: ${camera.name}</p>
+//                 <p>Description: ${camera.description}</p>
+//                 <p>Stream: ${camera.url}</p>
+//                 <a href="/pi/sensors">Back to Sensors</a>
+//             </body>
+//             </html>
+//         `);
+//       } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
+//         res.json(camera);
+//       } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+//         res.send(`
+//             <html>
+//             <body>
+//                 <h1>Monitoring Camera</h1>
+//                 <p>Name: ${camera.name}</p>
+//                 <p>Description: ${camera.description}</p>
+//                 <p>Stream: ${camera.url}</p>
+//                 <a href="/pi/sensors">Back to Sensors</a>
+//             </body>
+//             </html>
+//         `);
+//       } else if (!accept.includes('text/html') && accept.includes('application/json')) {
+//         res.json(camera);
+//       }
+//   })
+//   .head(function (req, res, next) {
+//       const accept = req.headers.accept || 'application/json';
+//       const qualityFactors = QualityFactors.parseQualityFactors(accept);
 
-      if (qualityFactors['text/html'] > qualityFactors['application/json']) {
-          res.set('Content-Type', 'text/html');
-      } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
-          res.set('Content-Type', 'application/json');  // Responding with JSON might not make sense here, so it's handled as an unsupported response.
-      } else if (accept.includes('text/html') && !accept.includes('application/json')) {
-          res.set('Content-Type', 'text/html');
-      } else if (!accept.includes('text/html') && accept.includes('application/json')) {
-          res.set('Content-Type', 'application/json');
-      } else {
-          res.end(); // Terminate the response without sending a body
-      }
-  });
+//       if (qualityFactors['text/html'] > qualityFactors['application/json']) {
+//           res.set('Content-Type', 'text/html');
+//       } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
+//           res.set('Content-Type', 'application/json');  // Responding with JSON might not make sense here, so it's handled as an unsupported response.
+//       } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+//           res.set('Content-Type', 'text/html');
+//       } else if (!accept.includes('text/html') && accept.includes('application/json')) {
+//           res.set('Content-Type', 'application/json');
+//       } else {
+//           res.end(); // Terminate the response without sending a body
+//       }
+//   });
 
 
-  router.get('/sensors/camera/url', (req, res) => {
-    res.send(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Camera Stream</title>
-      </head>
-      <body>
-        <h1>Camera Stream</h1>
-        <p><a href="/pi/sensors/" target="_blank">Click here to view the camera stream</a></p>
-      </body>
-      </html>
-    `);
-  });
-
+//   router.get('/sensors/camera/url', (req, res) => {
+//     res.send(`
+//       <!DOCTYPE html>
+//       <html lang="en">
+//       <head>
+//         <meta charset="UTF-8">
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//         <title>Camera Stream</title>
+//       </head>
+//       <body>
+//         <h1>Camera Stream</h1>
+//         <p><a href="/pi/sensors/" target="_blank">Click here to view the camera stream</a></p>
+//       </body>
+//       </html>
+//     `);
+//   });
+// Route to start streaming from the camera
+router.get('/sensors/camera', (req, res) => {
+  startCameraStream(res);
+});
 
   router.route('/actuators')
   .get(function (req, res, next) {
