@@ -25,9 +25,11 @@ router.route('/')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+          } 
+        //  else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        // //     res.json(resources);
+        // // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -55,9 +57,9 @@ router.route('/')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -85,14 +87,17 @@ router.route('/sensors')
                         <li><a href="/pi/sensors/pir">PIR Sensor</a></li>
                         <li><a href="/pi/sensors/ldr">LDR Sensor</a></li>
                         <li><a href="/pi/sensors/dht22">DHT22 Sensor</a></li>
+                        <li><a href="/pi/sensors/camera">Camera Streamming</a></li>
                     </ul>
                     <a href="/pi">Back to Home</a>
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -120,9 +125,9 @@ router.route('/sensors')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -155,9 +160,11 @@ router.route('/sensors/pir')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -183,9 +190,9 @@ router.route('/sensors/pir')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -218,9 +225,11 @@ router.route('/sensors/ldr')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -246,9 +255,9 @@ router.route('/sensors/ldr')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -282,9 +291,11 @@ router.route('/sensors/dht22')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -311,9 +322,9 @@ router.route('/sensors/dht22')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -324,6 +335,41 @@ router.route('/sensors/dht22')
         res.end(); // Terminate the response without sending a body
     }
   });
+
+// Route for the camera stream
+router.route('/sensors/camera')
+  .get(function (req, res, next) {
+      const accept = req.headers.accept || 'application/json';
+      const qualityFactors = QualityFactors.parseQualityFactors(accept);
+      const camera = resources.pi.sensors.camera;
+
+      if (qualityFactors['text/html'] > qualityFactors['application/json']) {
+          res.sendFile(path.join(__dirname, '../public/video.html'));
+      } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
+        res.json(camera);
+      } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+          res.sendFile(path.join(__dirname, '../public/video.html'));
+      } else if (!accept.includes('text/html') && accept.includes('application/json')) {
+        res.json(camera);
+      }
+  })
+  .head(function (req, res, next) {
+      const accept = req.headers.accept || 'application/json';
+      const qualityFactors = QualityFactors.parseQualityFactors(accept);
+
+      if (qualityFactors['text/html'] > qualityFactors['application/json']) {
+          res.set('Content-Type', 'text/html');
+      } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
+          res.set('Content-Type', 'application/json');  // Responding with JSON might not make sense here, so it's handled as an unsupported response.
+      } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+          res.set('Content-Type', 'text/html');
+      } else if (!accept.includes('text/html') && accept.includes('application/json')) {
+          res.set('Content-Type', 'application/json');
+      } else {
+          res.end(); // Terminate the response without sending a body
+      }
+  });
+
 
   router.route('/actuators')
   .get(function (req, res, next) {
@@ -346,9 +392,11 @@ router.route('/sensors/dht22')
               </body>
               </html>
           `);
-      } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.json(resources);
-      } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+      } 
+    //   else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.json(resources);
+    //   }
+       else if (accept.includes('text/html') && !accept.includes('application/json')) {
           res.send(`
               <html>
               <body>
@@ -375,9 +423,9 @@ router.route('/sensors/dht22')
   else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
       res.set('Content-Type', 'text/html');
   }
-  else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-    res.set('Content-Type', 'application/json');
-  } 
+//   else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+//     res.set('Content-Type', 'application/json');
+//   } 
   else if (accept.includes('text/html') && !accept.includes('application/json')) {
       res.set('Content-Type', 'text/html');
   }
@@ -410,9 +458,11 @@ router.route('/actuators/ledldr')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // }
+         else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -441,9 +491,9 @@ router.route('/actuators/ledldr')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    }
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // }
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }
@@ -476,9 +526,11 @@ router.route('/actuators/ledpir')
                 </body>
                 </html>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
                 <html>
                 <body>
@@ -507,9 +559,9 @@ router.route('/actuators/ledpir')
     else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
         res.set('Content-Type', 'text/html');
     }
-    else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-        res.set('Content-Type', 'application/json');
-    } 
+    // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+    //     res.set('Content-Type', 'application/json');
+    // } 
     else if (accept.includes('text/html') && !accept.includes('application/json')) {
         res.set('Content-Type', 'text/html');
     }

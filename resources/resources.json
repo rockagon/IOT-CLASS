@@ -13,6 +13,11 @@
                 "description": "A light detection sensor.",
                 "value": false
             },
+            "camera": {
+                "name": "Lab Monitoring Camera",
+                "description": "A camera that monitor the lab activities in real-time.",
+                "value": false
+            },
             "dht22": {
                 "name": "Temperature and Humidity Reading",
                 "description": "Temperature and humidity in the lab",

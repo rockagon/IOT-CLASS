@@ -26,14 +26,16 @@ app
             res.json(resources);
         } else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
             res.send(`
-                <h1>WELCOME TO THE CMU AFRICA IOT CLASS PROJECTS PORTAL</h1>
+                <h1>CMU-AFRICA IOT CLASS PROJECTS PORTAL</h1>
                 <p><a href="/pi">Raspberry Pi based simple smart home</a></p>
             `);
-        } else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.json(resources);
-        } else if (accept.includes('text/html') && !accept.includes('application/json')) {
+        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.json(resources);
+        // } 
+        else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.send(`
-                <h1>WELCOME TO THE CMU AFRICA IOT CLASS PROJECTS PORTAL</h1>
+                <h1>CMU-AFRICA IOT CLASS PROJECTS PORTAL</h1>
                 <p><a href="/pi">Raspberry Pi based simple smart home</a></p>
             `);
         }
@@ -51,9 +53,9 @@ app
         else if (qualityFactors['application/json'] < qualityFactors['text/html']) {
             res.set('Content-Type', 'text/html');
         }
-        else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
-            res.set('Content-Type', 'application/json');
-        } 
+        // else if (qualityFactors['application/json'] == qualityFactors['text/html']) {
+        //     res.set('Content-Type', 'application/json');
+        // } 
         else if (accept.includes('text/html') && !accept.includes('application/json')) {
             res.set('Content-Type', 'text/html');
         }

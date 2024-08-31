@@ -1,50 +1,43 @@
 var Gpio = require('onoff').Gpio;
 
-var led1 = new Gpio(532, 'out'); //GPIO20
-var pir = new Gpio(529, 'in', 'both'); //GPIO17
-var interval1 = null;
+var led1 = new Gpio(532, 'out'); // GPIO20
+var pir = new Gpio(529, 'in', 'both'); // GPIO17
 var pirValue = 0;
 var resources = require('./../resources/resources.json');
 
-// Function to check PIR sensor value
-function checkPIR() {
-  pir.read((err, value) => {
-    if (err) {
-      console.log('Error reading PIR sensor:', err);
-      return;
-    }
+// Watch for changes in PIR sensor state
+pir.watch((err, value) => {
+  if (err) {
+    console.log('Error watching PIR sensor:', err);
+    return;
+  }
+  pirValue = value; // Store the value in pirValue
+
+  if (value == 1) {
+    // Motion detected
+    led1.writeSync(1); // Turn on the LED
     console.log("PIR value is: ", value);
-	pirValue = value; // Store the value in pirValue
-    if (value==1) {
-      if (interval1) {
-        clearInterval(interval1);
-      }
+    resources.pi.sensors.pir.value = true;
+    resources.pi.actuators.ledpir.value = true;
 
-      if (led1.readSync() === 0) { 
-        led1.writeSync(1); // Toggle LED state
-      resources.pi.sensors.pir.value = true
-      resources.pi.actuators.ledpir.value = true
-    } else if (led1.readSync() === 1){
-      // If no motion is detected, turn off the LED
-      led1.writeSync(0);
-      resources.pi.sensors.pir.value = false
-      resources.pi.actuators.ledpir.value = false
-    }
-  }})};
-
-// Set an interval to check the PIR sensor every 2 seconds
-setInterval(checkPIR, 1000);
+    // Set a timeout to turn off the LED after 3 seconds
+    setTimeout(() => {
+      led1.writeSync(0); // Turn off the LED
+      resources.pi.sensors.pir.value = false;
+      resources.pi.actuators.ledpir.value = false;
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+});
 
 // Handle process exit
 process.on('SIGINT', () => {
-	clearInterval(interval1);
-	led1.writeSync(0);
-	led1.unexport();
-	pir.unexport();
-	process.exit();
-  });
-  
-// Export the LDR value
+  led1.writeSync(0);
+  led1.unexport();
+  pir.unexport();
+  process.exit();
+});
+
+// Export the PIR value
 module.exports = {
-	getPirValue: () => pirValue
+  getPirValue: () => pirValue
 };
