@@ -106,6 +106,7 @@ router.route('/sensors')
                         <li><a href="/pi/sensors/pir">PIR Sensor</a></li>
                         <li><a href="/pi/sensors/ldr">LDR Sensor</a></li>
                         <li><a href="/pi/sensors/dht22">DHT22 Sensor</a></li>
+                        <li><a href="/pi/sensors/camera">Camera Streaming</a></li>
                     </ul>
                     <a href="/pi">Back to Home</a>
                 </body>
@@ -344,11 +345,31 @@ router.route('/sensors/camera')
       const camera = resources.pi.sensors.camera;
 
       if (qualityFactors['text/html'] > qualityFactors['application/json']) {
-          res.sendFile(path.join(__dirname, '../public/video.html'));
+        res.send(`
+            <html>
+            <body>
+                <h1>DHT22 Sensor</h1>
+                <p>Name: ${camera.name}</p>
+                <p>Description: ${camera.description}</p>
+                <p>Stream: ${camera.url}</p>
+                <a href="/pi/sensors">Back to Sensors</a>
+            </body>
+            </html>
+        `);
       } else if (qualityFactors['application/json'] > qualityFactors['text/html']) {
         res.json(camera);
       } else if (accept.includes('text/html') && !accept.includes('application/json')) {
-          res.sendFile(path.join(__dirname, '../public/video.html'));
+        res.send(`
+            <html>
+            <body>
+                <h1>Monitoring Camera</h1>
+                <p>Name: ${camera.name}</p>
+                <p>Description: ${camera.description}</p>
+                <p>Stream: ${camera.url}</p>
+                <a href="/pi/sensors">Back to Sensors</a>
+            </body>
+            </html>
+        `);
       } else if (!accept.includes('text/html') && accept.includes('application/json')) {
         res.json(camera);
       }
@@ -368,6 +389,24 @@ router.route('/sensors/camera')
       } else {
           res.end(); // Terminate the response without sending a body
       }
+  });
+
+
+  router.get('/sensors/camera/url', (req, res) => {
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Camera Stream</title>
+      </head>
+      <body>
+        <h1>Camera Stream</h1>
+        <p><a href="/pi/sensors/" target="_blank">Click here to view the camera stream</a></p>
+      </body>
+      </html>
+    `);
   });
 
 

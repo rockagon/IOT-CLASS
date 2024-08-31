@@ -5,12 +5,12 @@ const cors = require('cors');
 const path = require('path');
 const resources = require('./resources/resources.json');
 const piRoutes = require('./routes/pi');
-const videoStreamPlugin = require('./plugins/camera');
 const QualityFactors = require('./QualityFactors');
 const pir = require('./plugins/pir');
 const ldr = require('./plugins/ldr');
 const temp = require('./plugins/temp');
 const lcd = require('./plugins/lcd');
+const videoStreamPlugin = require('./plugins/camera');
 //const gps = require('./plugins/gps');
 
 // Initialize Express app
@@ -21,9 +21,6 @@ const io = socketIo(server);
 // Middleware
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Use the video streaming plugin
-videoStreamPlugin(io);
 
 // API Routes
 app.use('/pi', piRoutes);
@@ -66,6 +63,7 @@ app.route('/')
           res.end();
       }
   });
+  
 
 // Start the server
 server.listen(8000, () => {

@@ -16,7 +16,7 @@
             "camera": {
                 "name": "Lab Monitoring Camera",
                 "description": "A camera that monitor the lab activities in real-time.",
-                "value": false
+                "url": "/pi/sensors/camera"
             },
             "dht22": {
                 "name": "Temperature and Humidity Reading",
