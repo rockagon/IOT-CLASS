@@ -1,44 +1,31 @@
-const { SerialPort } = require('serialport');
-const { ReadlineParser } = require('@serialport/parser-readline');
-const nmea = require('nmea-0183');
+const SerialPort = require('serialport');
+const GPS = require('gps');
 
-const portPath = '/dev/serial0';
-const baudRate = 9600;
-
-const port = new SerialPort({ path: portPath, baudRate: baudRate, autoOpen: true });
-
-port.on('open', () => {
-    console.log(`Serial port ${portPath} opened successfully.`);
+// Replace with your actual serial port path (e.g., '/dev/ttyUSB0' or '/dev/ttyS0')
+const port = new SerialPort('/dev/serial0', {
+    baudRate: 9600,
+    parser: new SerialPort.parsers.Readline({ delimiter: '\r\n' })
 });
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+const gps = new GPS();
 
-parser.on('data', (line) => {
-    try {
-        const decodedLine = line.toString('utf8').trim();
-
-        // Basic validation to ensure the line starts with $ and is not empty
-        if (!decodedLine.startsWith('$') ) {
-            console.log('Skipping invalid or incomplete NMEA sentence:', decodedLine);
-            return;
-        }
-
-        const sentence = nmea.parse(decodedLine);
-
-        if (sentence) {
-            console.log('Parsed NMEA sentence:', sentence);
-
-            if (sentence.sentenceId === 'GGA' && sentence.fixType && sentence.latitude && sentence.longitude) {
-                console.log('Got location via GGA packet:', sentence.latitude, sentence.longitude);
-            }
-
-            if (sentence.sentenceId === 'RMC' && sentence.status === 'A' && sentence.latitude && sentence.longitude) {
-                console.log('Got location via RMC packet:', sentence.latitude, sentence.longitude);
-            }
-        } else {
-            console.log('Invalid NMEA sentence:', decodedLine);
-        }
-    } catch (error) {
-        console.error('Error processing NMEA sentence:', line, error);
+gps.on('data', (data) => {
+    if (data.lat !== null && data.lon !== null) {
+        console.log(`Latitude: ${data.lat.toFixed(6)} ${data.latPole}`);
+        console.log(`Longitude: ${data.lon.toFixed(6)} ${data.lonPole}`);
+        console.log(`Altitude: ${data.alt ? `${data.alt} meters` : 'N/A'}`);
+    } else {
+        console.log('Waiting for valid GPS signal...');
     }
 });
+
+port.on('data', (data) => {
+    gps.update(data.toString());
+    console.log('Raw data:', data.toString());  // This will help you see the raw NMEA sentences.
+});
+
+port.on('error', (err) => {
+    console.error('Serial port error:', err.message);
+});
+
+console.log('Listening for GPS data...');
