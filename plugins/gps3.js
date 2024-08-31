@@ -1,35 +1,33 @@
-const { SerialPort } = require('serialport');
-const { ReadlineParser } = require('@serialport/parser-readline');
-const { parseNmeaSentence } = require('nmea-0183');
+const SerialPort = require('serialport');
+const GPS = require('gps');
 
-const portPath = '/dev/serial0'; // 
-const baudRate = 9600; //
-const port = new SerialPort({ path: portPath, baudRate: baudRate,autoOpen: true,});
-
-port.on('open', () => {
-    console.log(`Serial port ${portPath} opened successfully.`);
+// Setup the serial port
+const ser = new SerialPort('/dev/ttyAMA0', {
+    baudRate: 9600,
+    parser: new SerialPort.parsers.Readline({ delimiter: '\r\n' }),
+    timeout: 1000 // equivalent to Python's timeout=1
 });
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+const gps = new GPS();
 
-let latitude, longitude, altitude;
-
-parser.on("data", (line) => {
-//    try {
-        const packet = parseNmeaSentence(line);
-
-        if (packet.sentenceId === "GSV" && packet.status === "valid") {
-            console.log("Got location via RMC packet:", packet.latitude, packet.longitude);
-        }
-
-        if (packet.sentenceId === "GGA" && packet.fixType !== "none") {
-            console.log("Got location via GGA packet:", packet.latitude, packet.longitude);
-        }
-
-        if (packet.sentenceId === "GSA") {
-            console.log("There are " + packet.satellites.length + " satellites in view.");
-        }
-//    } catch (error) {
-//        console.error("Got bad packet:", line, error);
-//    }
+gps.on('data', (parsedData) => {
+    // Only process if it's a GPRMC sentence
+    if (parsedData.type === 'RMC') {
+        const lat = parsedData.lat;
+        const lng = parsedData.lon;
+        const gpsData = `Latitude=${lat} and Longitude=${lng}`;
+        console.log(gpsData);
+    }
 });
+
+ser.on('data', (newdata) => {
+    // Update GPS data stream
+    gps.update(newdata.toString());
+    console.log('Raw data:', newdata.toString()); // Optionally print the raw NMEA data
+});
+
+ser.on('error', (err) => {
+    console.error('Serial port error:', err.message);
+});
+
+console.log('Listening for GPS data...');
